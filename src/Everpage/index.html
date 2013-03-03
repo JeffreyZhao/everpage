@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Everpage!</title>
+    <style>
+        .input { width: 800px; }
+    </style>
+</head>
+<body>
+    <form action="note" method="GET" target="_blank">
+        <p>
+            User Token:
+            <input name="authToken" class="input" required="required" pattern="[^\s]+" title="none whitespaces"
+                placeholder="Authentication token, you can request one to access your own notes from https://www.evernote.com/api/DeveloperToken.action."/>
+        </p>
+        <p>
+            Note ID:
+            <input name="noteId" class="input" required="required" id="noteId" pattern="(set by script below)"
+                title="guid (xxxxxxxx-xxxx-...), link (evernote:///view/...) or web address (https://www.evernote.com/shard/...)"
+                placeholder="guid (xxxxxxxx-xxxx-...), link (evernote:///view/...) or web address (https://www.evernote.com/shard/...) of the note." />
+        </p>
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+    <script>
+        var guidRegex = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
+        var linkRegex = "evernote:///view/\\d+/s\\d+/" + guidRegex + "/.*";
+        var webAddressRegex = "https://www.evernote.com/shard/s\\d+/view/notebook/" + guidRegex + ".*";
+        var allPattern = "^(" + guidRegex + ")|(" + linkRegex + ")|(" + webAddressRegex + ")$";
+        document.getElementById("noteId").setAttribute("pattern", allPattern);
+    </script>
+</body>
+</html>
