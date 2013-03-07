@@ -77,7 +77,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="Views\note\Index.aspx" />
+    <Content Include="Views\Note\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
