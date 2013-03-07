@@ -125,7 +125,10 @@
             }
 
             var body = content.Substring(startIndex, endIndex - startIndex);
-            var resources = note.Resources.ToDictionary(r => ToHex(r.Data.BodyHash));
+            var resources = note.Resources != null
+                ? note.Resources.ToDictionary(r => ToHex(r.Data.BodyHash))
+                : new Dictionary<string, Resource>();
+
             return EnMediaTagRegex.Replace(body, m => EnMediaToImg(m, resources, userInfo.WebApiUrlPrefix));
         }
 
